@@ -3,7 +3,7 @@ import {
   skills,
   education,
   experience,
-  trekking,
+  publication,
   footer,
 } from "./user-data/data.js";
 
@@ -98,8 +98,8 @@ function populateSkills(items, id) {
   });
 }
 
-function populateTrekking(items) {
-  const skillsTag = document.getElementById('trekking');
+function populatePublication(items) {
+  const skillsTag = document.getElementById('publication');
   items.forEach((item) => {
     const h3 = getElement("li", null);
     h3.innerHTML = item;
@@ -443,6 +443,43 @@ function getBlogDate(publishDate) {
   }
 }
 
+
+async function fetchQiitaData(username) {
+  const url = `https://qiita.com/${username}`;
+  try {
+    const response = await fetch(url);
+    const htmlText = await response.text();
+    
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText, "text/html");
+
+    const contributions = doc.querySelector('a[href$="/contributions"] span')?.textContent || "N/A";
+    const posts = doc.querySelector('a[href$="/OSAKO"] span')?.textContent || "N/A";
+    const followers = doc.querySelector('a[href$="/followers"]')?.textContent.trim() || "N/A";
+    const following = doc.querySelector('a[href$="/following_users"]')?.textContent.trim() || "N/A";
+
+    populateQiitaCard({ contributions, posts, followers, following });
+  } catch (error) {
+    console.error("Error fetching Qiita data:", error);
+  }
+}
+
+function populateQiitaCard({ contributions, posts, followers, following }) {
+  const qiitaCard = document.querySelector(".qiita-card");
+  qiitaCard.innerHTML = `
+    <div style="border-radius: 12px; padding: 16px; font-size: 14px; background: linear-gradient(135deg, #99ccff, #6699ff); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+      <h3 style="margin: 0; font-size: 18px; font-weight: bold;">Qiita Stats</h3>
+      <p>Contributions: ${contributions}</p>
+      <p>Posts: ${posts}</p>
+      <p>Followers: ${followers}</p>
+      <p>Following: ${following}</p>
+    </div>
+  `;
+}
+
+fetchQiitaData("OSAKO");
+
+
 populateBio(bio, "bio");
 
 populateSkills(skills, "skills");
@@ -452,7 +489,7 @@ fetchReposFromGit(gitRepo);
 fetchGitConnectedData(gitConnected);
 
 populateExp_Edu(experience, "experience");
-populateTrekking(trekking);
+populatePublication(publication);
 populateExp_Edu(education, "education");
 
 populateLinks(footer, "footer");
