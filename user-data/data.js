@@ -71,7 +71,7 @@ export const publication = [
 
 export const education = [
   {
-    title: "Wageningen University",
+    title: "Wageningen University & Research",
     duration: "2024 - Present",
     subtitle: "Master of Science: Geo-Information Science",
     details: [],
@@ -88,7 +88,11 @@ export const education = [
     title: "University of Tsukuba",
     duration: "2019-2021",
     subtitle: "Master of Science: Geosciences",
-    details: ["I analyzed the environmental conditions associated with extreme snowfall events caused by extratropical cyclone activity in Japan using historical big data. "],
+    details: [
+      "I analyzed the environmental conditions associated with extreme snowfall events caused by extratropical cyclone activity in Japan using historical big data. ",
+      "Participation in the Workshop on Snowfall and Snow Cover 2020.",
+
+    ],
     tags: ["Meteorology", "Climatology"],
     icon: "graduation-cap",
   },
