@@ -23,7 +23,7 @@ export const experience = [
       `Created irrigation calendars using satellite imagery to optimize water management in rice paddies.`,
     ],
     tags: ["Remote Sensing", "IoT", "Carbon Credits&Markets"],
-    icon: "truck",
+    icon: "pagelines",
   },
   {
     title: "Nowcast Inc.",
@@ -34,7 +34,7 @@ export const experience = [
       `Supported the development of an FAQ chatbot to enhance customer support efficiency.`,
     ],
     tags: ["Python","LLMs",],
-    icon: "heartbeat",
+    icon: "language",
   },
   {
     title: "DATAFLUCT Inc.",
@@ -50,7 +50,7 @@ export const experience = [
       `Designed logic to identify optimal installation sites for solar photovoltaic (PV) systems by integrating geospatial information data.`,
     ],
     tags: ["Python", "BigQuery", "Google Earth Engine", "Machine Learning", "Deep Learning"],
-    icon: "qrcode",
+    icon: "bar-chart",
   },
   {
     title: "DataWise Inc.",
@@ -61,7 +61,7 @@ export const experience = [
       `Analyzed changes in human flow patterns due to the spread of COVID-19 to assess pandemic-related impacts.`,
     ],
     tags: ["Python", "BigQuery", "SAS-SQL", "GPS", "Location Analysis"],
-    icon: "group",
+    icon: "pie-chart",
   },
 ];
 
@@ -82,7 +82,7 @@ export const education = [
       "ArcGIS",
       "ERDAS IMAGINE",
     ],
-    icon: "graduation-cap",
+    icon: "university",
   },
   {
     title: "University of Tsukuba",
