@@ -15,7 +15,7 @@ export const skills = [
 
 export const experience = [
   {
-    title: "Creattura Co., Ltd.",
+    title: "<a href='https://www.creattura.com/en' target='_blank'>Creattura Co., Ltd.</a>",
     duration: "April 2024 - Present",
     subtitle: "Data Scientist (Contractor)",
     details: [
@@ -26,7 +26,7 @@ export const experience = [
     icon: "pagelines",
   },
   {
-    title: "Nowcast Inc.",
+    title: "<a href='https://nowcast.co.jp/en' target='_blank'>Nowcast Inc.</a>",
     duration: "July 2023 - June 2024",
     subtitle: "LLM Engineer (Contractor)",
     details: [
@@ -37,7 +37,7 @@ export const experience = [
     icon: "language",
   },
   {
-    title: "DATAFLUCT Inc.",
+    title: "<a href='https://datafluct.com' target='_blank'>DATAFLUCT Inc.</a>",
     duration: "April 2021 - December 2024",
     subtitle: "Data Scientist (Full-time/Contractor)",
     details: [
@@ -53,7 +53,7 @@ export const experience = [
     icon: "bar-chart",
   },
   {
-    title: "DataWise Inc.",
+    title: "<a href='https://www.datawise.co.jp' target='_blank'>DataWise Inc.</a>",
     duration: "August 2019 - April 2020",
     subtitle: "Geospatial Data Analyst Intern",
     details: [
@@ -74,7 +74,7 @@ export const education = [
     title: "Wageningen University & Research",
     duration: "2024 - Present",
     subtitle: "Master of Science: Geo-Information Science",
-    details: [],
+    details: ["Short Paper <a href='/documents/AEO_ShortPaper.pdf' target='_blank'>[PDF]</a>: This study compared the forest loss detection capabilities of BFAST Monitor, a trajectory-based approach, with the Global Forest Change (GFC) dataset in tropical forests of Laos. Using MODIS EVI time-series data, BFAST Monitor achieved comparable accuracy to GFC, although potential overestimation was observed in areas of partial forest conversion"],
     tags: [
       "Remote Sensing",
       "Python",
@@ -136,14 +136,6 @@ export const footer = [
   {
     label: "Links",
     data: [
-      //   {
-      //     text: "Linkedin",
-      //     link: "https://www.linkedin.com/in/vinaysomawat/",
-      //   },
-      //   {
-      //     text: "Twitter",
-      //     link: "https://twitter.com/thesigmakid",
-      //   },
       {
         text: "Linkedin",
         link: "https://www.linkedin.com/in/seima-osako/",
