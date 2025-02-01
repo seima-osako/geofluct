@@ -374,17 +374,14 @@ function populateLinks(items, id) {
       let ul = document.createElement("ul");
       item.data.forEach(function (data) {
         let li = document.createElement("li");
-        let a = document.createElement("a");
-        if (data.link) {
-          a.href = data.link;
-          a.target = "_blank";
-        }
         if (data.func) {
+          let a = document.createElement("a");
           a.setAttribute("onclick", data.func);
+          a.innerHTML = data.text;
+          li.append(a);
+        } else {
+          li.innerHTML = data.text;
         }
-        a.innerHTML = data.text;
-
-        li.append(a);
         ul.append(li);
       });
       nav.append(ul);

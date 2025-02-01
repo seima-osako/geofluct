@@ -98,56 +98,79 @@ export const education = [
   },
 ];
 
+// export const footer = [
+//   {
+//     label: "Dev Profiles",
+//     data: [
+//       {
+//         text: "Stackoverflow",
+//         link: "https://stackoverflow.com/users/8461233/vinay-somawat",
+//       },
+//       {
+//         text: "GitHub",
+//         link: "https://github.com/vinaysomawat",
+//       },
+//       {
+//         text: "LeetCode",
+//         link: "https://leetcode.com/somawatvinay/",
+//       },
+//     ],
+//   },
+//   {
+//     label: "Resources",
+//     data: [
+//       {
+//         text: "Enable Dark/Light Mode",
+//         func: "enableDarkMode()",
+//       },
+//       {
+//         text: "Print this page",
+//         func: "window.print()",
+//       },
+//       {
+//         text: "Clone this page",
+//         link: "https://github.com/vinaysomawat/vinaysomawat.github.io",
+//       },
+//     ],
+//   },
+//   {
+//     label: "Links",
+//     data: [
+//       {
+//         text: "Linkedin",
+//         link: "https://www.linkedin.com/in/seima-osako/",
+//       },
+//       {
+//         text: "Qiita",
+//         link: "https://qiita.com/OSAKO",
+//       },
+//     ],
+//   },
+//   {
+//     label: "copyright-text",
+//     data: [""],
+//   },
+// ];
+
 export const footer = [
-  //   {
-  //     label: "Dev Profiles",
-  //     data: [
-  //       {
-  //         text: "Stackoverflow",
-  //         link: "https://stackoverflow.com/users/8461233/vinay-somawat",
-  //       },
-  //       {
-  //         text: "GitHub",
-  //         link: "https://github.com/vinaysomawat",
-  //       },
-  //       {
-  //         text: "LeetCode",
-  //         link: "https://leetcode.com/somawatvinay/",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     label: "Resources",
-  //     data: [
-  //       {
-  //         text: "Enable Dark/Light Mode",
-  //         func: "enableDarkMode()",
-  //       },
-  //       {
-  //         text: "Print this page",
-  //         func: "window.print()",
-  //       },
-  //       {
-  //         text: "Clone this page",
-  //         link: "https://github.com/vinaysomawat/vinaysomawat.github.io",
-  //       },
-  //     ],
-  //   },
   {
-    label: "Links",
+    label: "Contact",
     data: [
-      {
-        text: "Linkedin",
-        link: "https://www.linkedin.com/in/seima-osako/",
-      },
-      {
-        text: "Qiita",
-        link: "https://qiita.com/OSAKO",
-      },
-    ],
+      { text: "Company: GeoFluct" },
+      { text: "Address: De Nieuwe Erven 3 Unit: 12810, 5431 NV Cuijk" },
+      { text: "Email: seima.osako@wur.nl or osako.seima.su@alumni.tsukuba.ac.jp" },
+    ]
+  },
+  {
+    label: "Business",
+    data: [
+      { text: "Geospatial data analysis and Consultancy services" }
+    ]
   },
   {
     label: "copyright-text",
-    data: [""],
-  },
+    data: [
+      "© 2024 GeoFluct. All rights reserved."
+    ]
+  }
 ];
