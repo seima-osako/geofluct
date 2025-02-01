@@ -2233,14 +2233,36 @@ hr {
   padding: 0;
 }
   
-.portfolio-item {
+   .portfolio-item {
 	display: flex;
-	align-items: center;
-	gap: 2em;
-	width: 100%;
-	margin-bottom: 4em;
+	flex-direction: column;
+	margin-bottom: 3em;
   }
   
+  .service-header {
+	margin-bottom: 1em;
+  }
+  
+  .service-body {
+	display: flex;
+	gap: 2em;
+	align-items: flex-start;
+  }
+  
+  .left-align .service-body {
+	flex-direction: row;
+  }
+  
+  .right-align .service-body {
+	flex-direction: row-reverse;
+  }
+  
+  @media screen and (max-width: 768px) {
+	.service-body {
+	  flex-direction: column;
+	  align-items: center;
+	}
+  }
   .portfolio-item img {
 	width: 45%;
 	height: auto;
