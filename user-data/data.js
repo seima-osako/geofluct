@@ -1,16 +1,13 @@
 export const bio = [
   "Hello, I'm Seima Osako!",
-  "I have worked with several startups companies, focusing primarily on supporting the utilization of GPS location data, satellite imagery, and generative AI. In particular, I have been committed to developing technologies aimed at solving global environmental issues and addressing climate change.", 
-  "My experience spans a wide range of projects, including using remote sensing in the agricultural and forestry sectors to generate carbon credits and determining optimal locations for solar power installations through the integration of geospatial information and data science.",
-  "Currently, I am pursuing an MSc in Geo-Information Science at Wageningen University & Research, aiming to contribute globally in the fields of environmental sustainability and climate action.",
+  "I collaborate with startups to leverage remote sensing, GPS location data, and GenAI.",
+  "Through my business, I provide geospatial data analysis to address environmental challenges and promote sustainable development.",
 ];
 
 export const skills = [
   "Geospatial Information Knowledge & Processing Techniques (Optical & SAR imagery, meteorological & climatic data, GPS location data)",
   "Experience in data science (machine learning, deep learning)",
-  "Ability to survey scholarly articles on geospatial information and apply implemented algorithms",
-  "Strong commitment and responsibility towards projects",
-  "Creation of proposal documents for clients (selection of geospatial data and analytical methods, workflow and schedule management)",
+  "Strong commitment and responsibility towards clients and projects",
 ];
 
 export const experience = [
