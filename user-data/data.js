@@ -125,7 +125,7 @@ export const footer = [
     data: [
       { text: "Company: GeoFluct" },
       { text: "Address: De Nieuwe Erven 3 Unit: 12810, 5431 NV Cuijk" },
-      { text: "Email: seima.osako@wur.nl or osako.seima.su@alumni.tsukuba.ac.jp" },
+      { text: "Email: <br>seima.osako@wur.nl<br>osako.seima.su@alumni.tsukuba.ac.jp" },
     ]
   },
   {

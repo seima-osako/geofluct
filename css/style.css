@@ -568,29 +568,26 @@ body.offcanvas .colorlib-nav-toggle {
 }
 
 @media screen and (max-width: 768px) {
-	.colorlib-experience,
-	.colorlib-skills,
-	.colorlib-profile,
-	.colorlib-projects,
-	.colorlib-education,
-	.colorlib-work,
-	.colorlib-about,
-	.colorlib-installation,
-	.colorlib-services,
-	.colorlib-contact {
-		padding-top: 2em;
-		padding-bottom: 0em;
-	}
-	
-	.colorlib-blogs {
-		display: none;
-	}
+.colorlib-experience,
+.colorlib-skills,
+.colorlib-profile,
+.colorlib-projects,
+.colorlib-education,
+.colorlib-work,
+.colorlib-about,
+.colorlib-installation,
+.colorlib-services,
+.colorlib-contact,
+.colorlib-blogs {
+padding-top: 2em;
+padding-bottom: 0em;
+}
 
-	.profile-cards {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-	}
+.profile-cards {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
 }
 
 #colorlib-footer2 {
@@ -1461,18 +1458,12 @@ body.offcanvas .colorlib-nav-toggle {
 	padding: 0;
 	margin: 0;
 	list-style: none;
-	display: -moz-inline-stack;
 	display: inline-block;
-	zoom: 1;
-	*display: inline;
 }
 .colorlib-social li a {
 	font-size: 22px;
 	padding: 10px;
-	display: -moz-inline-stack;
 	display: inline-block;
-	zoom: 1;
-	*display: inline;
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
 	-ms-border-radius: 7px;
@@ -1723,10 +1714,7 @@ body.offcanvas .colorlib-nav-toggle {
 }
 .colorlib-nav-toggle i {
 	position: relative;
-	display: -moz-inline-stack;
 	display: inline-block;
-	zoom: 1;
-	*display: inline;
 	width: 30px;
 	height: 2px;
 	background-color: #000;
@@ -2122,12 +2110,14 @@ span {
 .badge {
     display: inline-block;
     min-width: 10px;
+    max-width: 100%;
     padding: 3px 7px;
     font-size: 12px;
     color: #fff;
-    line-height: 1;
+    line-height: 1.2;
     vertical-align: middle;
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
     text-align: center;
     background-color: brown !important;
     border-radius: 10px;
@@ -2269,13 +2259,13 @@ hr {
   .portfolio-item .content {
 	flex: 1;
   }
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
 	.service-body {
 	  flex-direction: column !important; 
 	  align-items: center;
 	  gap: 1em;
 	}
-	
+
 	.portfolio-item img {
 	  width: 100% !important;
 	  max-width: none !important;
@@ -2297,3 +2287,22 @@ hr {
 	.gis-data ul li {
 	  text-align: left;
 	}
+	div[style*="display: flex;"] {
+		flex-wrap: wrap !important;
+	}
+	.badge {
+		white-space: normal !important;
+		overflow-wrap: break-word !important;
+		word-break: break-word !important;
+		max-width: 100%;
+	}
+	.colorlib-footer p,
+	.colorlib-footer p a {
+	  white-space: normal !important;
+	  word-break: break-all !important;
+	  overflow-wrap: break-word !important;
+	  hyphens: auto !important;
+	  display: inline-block;
+	  max-width: 100%;
+	}
+}
