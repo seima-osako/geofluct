@@ -2233,14 +2233,8 @@ hr {
   padding: 0;
 }
   
-   .portfolio-item {
-	display: flex;
-	flex-direction: column;
+.portfolio-item {
 	margin-bottom: 3em;
-  }
-  
-  .service-header {
-	margin-bottom: 1em;
   }
   
   .service-body {
@@ -2249,19 +2243,22 @@ hr {
 	align-items: flex-start;
   }
   
+  .service-content {
+	flex: 1;
+  }
+  
+  .portfolio-item img {
+	width: 45%;
+	height: auto;
+	object-fit: cover;
+  }
+  
   .left-align .service-body {
 	flex-direction: row;
   }
   
   .right-align .service-body {
 	flex-direction: row-reverse;
-  }
-  
-  @media screen and (max-width: 768px) {
-	.service-body {
-	  flex-direction: column;
-	  align-items: center;
-	}
   }
   .portfolio-item img {
 	width: 45%;
@@ -2272,3 +2269,31 @@ hr {
   .portfolio-item .content {
 	flex: 1;
   }
+  @media screen and (max-width: 768px) {
+	.service-body {
+	  flex-direction: column !important; 
+	  align-items: center;
+	  gap: 1em;
+	}
+	
+	.portfolio-item img {
+	  width: 100% !important;
+	  max-width: none !important;
+	  margin: 0 0 1em 0;
+	}
+	
+	.service-content {
+	  width: 100%;
+	  text-align: left;
+	}
+	
+	.gis-data {
+	  width: 100%;
+	  text-align: left;
+	}
+	
+	.gis-data h4,
+	.gis-data ul,
+	.gis-data ul li {
+	  text-align: left;
+	}
