@@ -5,6 +5,7 @@ import {
   experience,
   publication,
   footer,
+  portfolio,
 } from "./user-data/data.js";
 
 import { URLs } from "./user-data/urls.js";
@@ -473,6 +474,47 @@ function populateQiitaCard({ contributions, posts, followers, following }) {
     </div>
   `;
 }
+
+function populatePortfolio(items, id) {
+  const portfolioSection = document.getElementById(id);
+  items.forEach((item) => {
+    const container = document.createElement("div");
+    container.className = "portfolio-item animate-box";
+    container.setAttribute("data-animate-effect", "fadeInLeft");
+    
+    const gisDataHtml = `
+      <div class="gis-data">
+        <h4>Expected Data:</h4>
+        <ul>
+          ${item.gisData.map(data => `<li>${data}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+    
+    if (item.align === "left") {
+      container.innerHTML = `
+        <img src="${item.image}" alt="${item.serviceName}">
+        <div class="content">
+          <h2><span style="color: #f9bf3f">${item.serviceName}</span></h2>
+          <p>${item.description}</p>
+          ${gisDataHtml}
+        </div>
+      `;
+    } else {
+      container.innerHTML = `
+        <div class="content">
+          <h2><span style="color: #f9bf3f">${item.serviceName}</span></h2>
+          <p>${item.description}</p>
+          ${gisDataHtml}
+        </div>
+        <img src="${item.image}" alt="${item.serviceName}">
+      `;
+    }
+    portfolioSection.appendChild(container);
+  });
+}
+
+populatePortfolio(portfolio, "portfolio");
 
 fetchQiitaData("OSAKO");
 

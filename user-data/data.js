@@ -98,59 +98,29 @@ export const education = [
   },
 ];
 
-// export const footer = [
-//   {
-//     label: "Dev Profiles",
-//     data: [
-//       {
-//         text: "Stackoverflow",
-//         link: "https://stackoverflow.com/users/8461233/vinay-somawat",
-//       },
-//       {
-//         text: "GitHub",
-//         link: "https://github.com/vinaysomawat",
-//       },
-//       {
-//         text: "LeetCode",
-//         link: "https://leetcode.com/somawatvinay/",
-//       },
-//     ],
-//   },
-//   {
-//     label: "Resources",
-//     data: [
-//       {
-//         text: "Enable Dark/Light Mode",
-//         func: "enableDarkMode()",
-//       },
-//       {
-//         text: "Print this page",
-//         func: "window.print()",
-//       },
-//       {
-//         text: "Clone this page",
-//         link: "https://github.com/vinaysomawat/vinaysomawat.github.io",
-//       },
-//     ],
-//   },
-//   {
-//     label: "Links",
-//     data: [
-//       {
-//         text: "Linkedin",
-//         link: "https://www.linkedin.com/in/seima-osako/",
-//       },
-//       {
-//         text: "Qiita",
-//         link: "https://qiita.com/OSAKO",
-//       },
-//     ],
-//   },
-//   {
-//     label: "copyright-text",
-//     data: [""],
-//   },
-// ];
+export const portfolio = [
+  {
+    serviceName: "Carbon Solutions",
+    description: "Comprehensive monitoring of rice paddies and forests for carbon credit generation, supporting climate change mitigation through advanced remote sensing and data analytics.",
+    image: "images/service1.jpg",
+    align: "left",
+    gisData: ["Satellite Imagery", "LiDAR", "Weather Data"]
+  },
+  {
+    serviceName: "Marketing Intelligence",
+    description: "Advanced location analytics and market insights using GPS data for strategic business decisions and detailed foot traffic analysis.",
+    image: "images/service2.jpg",
+    align: "right",
+    gisData: ["GPS Location Data", "Demographic Data", "Point-of-Interest (POI)", "Point-of-Sale (POS)"]
+  },
+  {
+    serviceName: "Traffic Analytics",
+    description: "Analysis of traffic congestion patterns and estimation of CO2 emissions using vehicle movement data for environmental impact assessment.",
+    image: "images/service3.jpg",
+    align: "left",
+    gisData: ["Vehicle GPS/Traffic Volume Data", "Road Network Data"]
+  },
+];
 
 export const footer = [
   {
@@ -170,7 +140,7 @@ export const footer = [
   {
     label: "copyright-text",
     data: [
-      "© 2024 GeoFluct. All rights reserved."
+      "© 2024 GeoFluct. Licensed under the MIT License."
     ]
   }
 ];

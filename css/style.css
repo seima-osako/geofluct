@@ -8,6 +8,15 @@
 	color: white;
   }
 
+  .dark-mode footer {
+	color: #000 !important;
+  }
+  
+  .dark-mode .footer h4,
+  .dark-mode .footer p {
+	color: #000 !important;
+  }
+
 /* =======================================================
 *
 * 	Template Style 
@@ -2196,4 +2205,48 @@ hr {
 	strong {
 		color: #f9bf3f;
 	}
+  }
+
+  .colorlib-portfolio {
+	padding: 7em 0;
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+  }
+  
+  .colorlib-wide-content {
+	padding-right: 1em;
+	padding-left: 1em;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	float: none;
+  }
+
+#portfolio {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+  
+.portfolio-item {
+	display: flex;
+	align-items: center;
+	gap: 2em;
+	width: 100%;
+	margin-bottom: 4em;
+  }
+  
+  .portfolio-item img {
+	width: 45%;
+	height: auto;
+	object-fit: cover;
+  }
+  
+  .portfolio-item .content {
+	flex: 1;
   }
