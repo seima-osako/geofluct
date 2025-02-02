@@ -117,6 +117,13 @@ export const portfolio = [
     align: "left",
     gisData: ["Vehicle GPS/Traffic Volume Data", "Road Network Data"]
   },
+  {
+    serviceName: "GeoAI Assistant",
+    description: "Integration of AI-powered tools to streamline geospatial data analysis and enhance decision support for complex spatial problems.",
+    image: "images/service4.jpg",
+    align: "right",
+    gisData: ["Multimodal Geospatial Datasets"]
+  }
 ];
 
 export const footer = [
