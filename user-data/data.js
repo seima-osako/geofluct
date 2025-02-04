@@ -104,7 +104,7 @@ export const portfolio = [
     gisData: ["Satellite Imagery", "LiDAR", "Weather Data"]
   },
   {
-    serviceName: "Marketing Intelligence",
+    serviceName: "Marketing Intelligence", 
     description: "Advanced location analytics and market insights using GPS data for strategic business decisions and detailed foot traffic analysis.",
     image: "images/service2.jpg",
     align: "right",
@@ -119,9 +119,9 @@ export const portfolio = [
   },
   {
     serviceName: "GeoAI Assistant",
-    description: "Integration of AI-powered tools to streamline geospatial data analysis and enhance decision support for complex spatial problems.",
+    description: "Integration of AI-powered tools to streamline geospatial data analysis and enhance decision support for complex spatial problems. Try <a href='https://geosearch-dev-webapp.azurewebsites.net/' target='_blank'>GeoSearch demo</a>!",
     image: "images/service4.jpg",
-    align: "right",
+    align: "right", 
     gisData: ["Multimodal Geospatial Datasets"]
   }
 ];
