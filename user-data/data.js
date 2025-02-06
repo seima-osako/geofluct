@@ -130,7 +130,7 @@ export const footer = [
   {
     label: "Contact",
     data: [
-      { text: "Company: GeoFluct" },
+      { text: "Company: <strong><u><a href='https://www.kvk.nl/bestellen/#/96369078000061700525?origin=search' target='_blank'>GeoFluct</a></u></strong>" },
       { text: "Address: De Nieuwe Erven 3 Unit: 12810, 5431 NV Cuijk" },
       { text: "Email: <br>seima.osako@wur.nl<br>osako.seima.su@alumni.tsukuba.ac.jp" },
     ]
@@ -144,7 +144,7 @@ export const footer = [
   {
     label: "copyright-text",
     data: [
-      "© 2024 GeoFluct. Licensed under the MIT License."
+      "© 2024 geofluct. Licensed under the MIT License."
     ]
   }
 ];
