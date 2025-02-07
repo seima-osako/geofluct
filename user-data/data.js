@@ -71,7 +71,7 @@ export const education = [
     title: "Wageningen University & Research",
     duration: "2024 - Present",
     subtitle: "Master of Science: Geo-Information Science",
-    details: ["Short Paper <a href='/geofluct/documents/AEO_ShortPaper.pdf' target='_blank'>[PDF]</a>: This study compared the forest loss detection capabilities of BFAST Monitor, a trajectory-based approach, with the Global Forest Change (GFC) dataset in tropical forests of Laos. Using MODIS EVI time-series data, BFAST Monitor achieved comparable accuracy to GFC, although potential overestimation was observed in areas of partial forest conversion"],
+    details: ["Short Paper <a href='/geofluct/documents/AEO_ShortPaper_v2.pdf' target='_blank'>[PDF]</a>: This study compared the forest loss detection capabilities of BFAST Monitor, a trajectory-based approach, with the Global Forest Change (GFC) dataset in tropical forests of Laos. Using MODIS EVI time-series data, BFAST Monitor achieved comparable accuracy to GFC, although potential overestimation was observed in areas of partial forest conversion"],
     tags: [
       "Remote Sensing",
       "Python",
@@ -130,7 +130,7 @@ export const footer = [
   {
     label: "Contact",
     data: [
-      { text: "Company: <strong><u><a href='https://www.kvk.nl/bestellen/#/96369078000061700525?origin=search' target='_blank'>GeoFluct</a></u></strong>" },
+      { text: "Company: <strong><u><a href='https://www.kvk.nl/bestellen/#/96369078000061700525' target='_blank'>GeoFluct</a></u></strong>" },
       { text: "Address: De Nieuwe Erven 3 Unit: 12810, 5431 NV Cuijk" },
       { text: "Email: <br>seima.osako@wur.nl<br>osako.seima.su@alumni.tsukuba.ac.jp" },
     ]
