@@ -19,7 +19,7 @@ export const experience = [
       `Support of agroforestry projects through forest monitoring and land cover classification using satellite data.`,
     ],
     tags: ["Remote Sensing", "Google Earth Engine"],
-    icon: "pagelines",
+    icon: "tree",
   },
   {
     title: "<a href='https://www.creattura.com/en' target='_blank'>Creattura Co., Ltd.</a>",
