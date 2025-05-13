@@ -40,7 +40,7 @@ export const experience = [
       `Streamlined the extraction of financial data from financial statements using Large Language Models (LLMs).`,
       `Supported the development of an FAQ chatbot to enhance customer support efficiency.`,
     ],
-    tags: ["Python","LLMs",],
+    tags: ["LangChain", "Amazon Bedrock",],
     icon: "language",
   },
   {
@@ -84,10 +84,9 @@ export const education = [
     details: ["Short Paper <a href='/geofluct/documents/AEO_ShortPaper_v2.pdf' target='_blank'>[PDF]</a>: This study compared the forest loss detection capabilities of BFAST Monitor, a trajectory-based approach, with the Global Forest Change (GFC) dataset in tropical forests of Laos. Using MODIS EVI time-series data, BFAST Monitor achieved comparable accuracy to GFC, although potential overestimation was observed in areas of partial forest conversion"],
     tags: [
       "Remote Sensing",
-      "Python",
-      "R",
       "ArcGIS",
       "ERDAS IMAGINE",
+      "Amazon Web Services (AWS)",
     ],
     icon: "university",
   },
@@ -114,7 +113,7 @@ export const portfolio = [
     gisData: ["Satellite Imagery", "LiDAR", "Weather Data"]
   },
   {
-    serviceName: "Marketing Intelligence", 
+    serviceName: "Marketing Intelligence",
     description: "Advanced location analytics and market insights using GPS data for strategic business decisions and detailed foot traffic analysis.",
     image: "images/service2.jpg",
     align: "right",
@@ -131,7 +130,7 @@ export const portfolio = [
     serviceName: "GeoAI Assistant",
     description: "Integration of AI-powered tools to streamline geospatial data analysis and enhance decision support for complex spatial problems. Try <a href='https://geosearch-dev-webapp.azurewebsites.net/' target='_blank'>GeoSearch demo</a>!",
     image: "images/service4.jpg",
-    align: "right", 
+    align: "right",
     gisData: ["Multimodal Geospatial Datasets"]
   }
 ];
