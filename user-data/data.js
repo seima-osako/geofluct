@@ -33,19 +33,8 @@ export const experience = [
     icon: "pagelines",
   },
   {
-    title: "<a href='https://nowcast.co.jp/en' target='_blank'>Nowcast Inc.</a>",
-    duration: "July 2023 - June 2024",
-    subtitle: "LLM Engineer (Contractor)",
-    details: [
-      `Streamlined the extraction of financial data from financial statements using Large Language Models (LLMs).`,
-      `Supported the development of an FAQ chatbot to enhance customer support efficiency.`,
-    ],
-    tags: ["LangChain", "Amazon Bedrock",],
-    icon: "language",
-  },
-  {
     title: "<a href='https://datafluct.com' target='_blank'>DATAFLUCT Inc.</a>",
-    duration: "April 2021 - December 2024",
+    duration: "April 2021 - Present",
     subtitle: "Data Scientist (Full-time/Contractor)",
     details: [
       `Visualized foot traffic data to enhance area management efficiency and support urban planning.`,
@@ -58,6 +47,17 @@ export const experience = [
     ],
     tags: ["Python", "BigQuery", "Google Earth Engine", "Machine Learning", "Deep Learning"],
     icon: "bar-chart",
+  },
+  {
+    title: "<a href='https://nowcast.co.jp/en' target='_blank'>Nowcast Inc.</a>",
+    duration: "July 2023 - June 2024",
+    subtitle: "LLM Engineer (Contractor)",
+    details: [
+      `Streamlined the extraction of financial data from financial statements using Large Language Models (LLMs).`,
+      `Supported the development of an FAQ chatbot to enhance customer support efficiency.`,
+    ],
+    tags: ["LangChain", "Amazon Bedrock",],
+    icon: "language",
   },
   {
     title: "<a href='https://www.datawise.co.jp' target='_blank'>DataWise Inc.</a>",
@@ -141,7 +141,7 @@ export const footer = [
     data: [
       { text: "Company: <strong><u><a href='https://www.kvk.nl/bestellen/#/96369078000061700525' target='_blank'>GeoFluct</a></u></strong>" },
       { text: "Address: De Nieuwe Erven 3 Unit: 12810, 5431 NV Cuijk" },
-      { text: "Email: <br>seima.osako@wur.nl<br>osako.seima.su@alumni.tsukuba.ac.jp" },
+      { text: "Email: <br>osako.seima.su@alumni.tsukuba.ac.jp" },
     ]
   },
   {
@@ -153,7 +153,7 @@ export const footer = [
   {
     label: "copyright-text",
     data: [
-      "© 2024 geofluct. Licensed under the MIT License."
+      "© 2025 geofluct. Licensed under the MIT License."
     ]
   }
 ];
