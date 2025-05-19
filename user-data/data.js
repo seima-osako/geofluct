@@ -74,13 +74,14 @@ export const experience = [
 
 export const publication = [
   'Zhao, X., Nishina, K., Izumisawa, H., Masutomi, Y., <strong>Osako, S.</strong>, & Yamamoto, S. (2024). Monsoon Asia Rice Calendar (MARC): a gridded rice calendar in monsoon Asia based on Sentinel-1 and Sentinel-2 images. Earth System Science Data, 16(8), 3893-3911.',
+  "AWS Certified Solutions Architect - Associate (<a href='https://cp.certmetrics.com/amazon/en/public/verify/credential/10a2476145924a0797fa532e7cc9dd95' target='_blank' rel='noopener noreferrer'>Verify</a>)",
 ];
 
 export const education = [
   {
     title: "Wageningen University & Research",
-    duration: "2024 - Present",
-    subtitle: "Master of Science: Geo-Information Science",
+    duration: "2024 - 2025",
+    subtitle: "Enrolled in Master of Science: Geo-Information Science program",
     details: ["Short Paper <a href='/geofluct/documents/AEO_ShortPaper_v2.pdf' target='_blank'>[PDF]</a>: This study compared the forest loss detection capabilities of BFAST Monitor, a trajectory-based approach, with the Global Forest Change (GFC) dataset in tropical forests of Laos. Using MODIS EVI time-series data, BFAST Monitor achieved comparable accuracy to GFC, although potential overestimation was observed in areas of partial forest conversion"],
     tags: [
       "Remote Sensing",
