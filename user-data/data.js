@@ -12,16 +12,6 @@ export const skills = [
 
 export const experience = [
   {
-    title: "<a href='https://www.weforest.org/' target='_blank'>WeForest</a>",
-    duration: "March 2025 - Present",
-    subtitle: "Volunteer",
-    details: [
-      `Support of agroforestry projects through forest monitoring and land cover classification using satellite data.`,
-    ],
-    tags: ["Remote Sensing", "Google Earth Engine"],
-    icon: "tree",
-  },
-  {
     title: "<a href='https://www.creattura.com/en' target='_blank'>Creattura Co., Ltd.</a>",
     duration: "April 2024 - Present",
     subtitle: "Data Scientist (Contractor)",
@@ -47,6 +37,16 @@ export const experience = [
     ],
     tags: ["Python", "BigQuery", "Google Earth Engine", "Machine Learning", "Deep Learning"],
     icon: "bar-chart",
+  },
+  {
+    title: "<a href='https://www.weforest.org/' target='_blank'>WeForest</a>",
+    duration: "March 2025 - June 2025",
+    subtitle: "Volunteer",
+    details: [
+      `Support of agroforestry projects through forest monitoring and land cover classification using satellite data.`,
+    ],
+    tags: ["Remote Sensing", "Google Earth Engine"],
+    icon: "tree",
   },
   {
     title: "<a href='https://nowcast.co.jp/en' target='_blank'>Nowcast Inc.</a>",
