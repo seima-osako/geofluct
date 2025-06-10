@@ -140,9 +140,8 @@ export const footer = [
   {
     label: "Contact",
     data: [
-      { text: "Company: <strong><u><a href='https://www.kvk.nl/bestellen/#/96369078000061700525' target='_blank'>GeoFluct</a></u></strong>" },
-      { text: "Address: De Nieuwe Erven 3 Unit: 12810, 5431 NV Cuijk" },
       { text: "Email: <br>osako.seima.su@alumni.tsukuba.ac.jp" },
+      { text: "LinkedIn: <br><a href='https://www.linkedin.com/in/seima-osako/' target='_blank'>seima-osako</a>" },
     ]
   },
   {
