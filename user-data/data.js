@@ -108,7 +108,7 @@ export const education = [
 export const portfolio = [
   {
     serviceName: "Carbon Solutions",
-    description: "Comprehensive monitoring of rice paddies and forests for carbon credit generation, supporting climate change mitigation through advanced remote sensing and data analytics. Try the <a href='http://100.29.93.201:8501/' target='_blank'>Japanese rice paddy CH₄ emission simulation app</a>.",
+    description: "Comprehensive monitoring of rice paddies and forests for carbon credit generation, supporting climate change mitigation through advanced remote sensing and data analytics.",
     image: "images/service1.jpg",
     align: "left",
     gisData: ["Satellite Imagery", "LiDAR", "Weather Data"]
