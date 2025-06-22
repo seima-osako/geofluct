@@ -129,7 +129,7 @@ export const portfolio = [
   },
   {
     serviceName: "GeoAI Assistant",
-    description: "Integration of AI-powered tools to streamline geospatial data analysis and enhance decision support for complex spatial problems. Try <a href='https://geosearch-dev-webapp.azurewebsites.net/' target='_blank'>GeoSearch demo</a>!",
+    description: "Integration of AI-powered tools to streamline geospatial data analysis and enhance decision support for complex spatial problems.",
     image: "images/service4.jpg",
     align: "right",
     gisData: ["Multimodal Geospatial Datasets"]
