@@ -13,7 +13,7 @@ export const skills = [
 export const experience = [
   {
     title: "<a href='https://www.creattura.com/en' target='_blank'>Creattura Co., Ltd.</a>",
-    duration: "April 2024 - Present",
+    duration: "April 2024 - December 2025",
     subtitle: "Data Scientist (Contractor)",
     details: [
       `Developed a Digital MRV (Measurement, Reporting, Verification) system for rice paddy carbon credits to support sustainable agriculture initiatives.`,
@@ -24,7 +24,7 @@ export const experience = [
   },
   {
     title: "<a href='https://datafluct.com' target='_blank'>DATAFLUCT Inc.</a>",
-    duration: "April 2021 - Present",
+    duration: "April 2021 - February 2026",
     subtitle: "Data Scientist (Full-time/Contractor)",
     details: [
       `Visualized foot traffic data to enhance area management efficiency and support urban planning.`,

@@ -10,512 +10,435 @@ import {
 
 import { URLs } from "./user-data/urls.js";
 
-const { medium, gitConnected, gitRepo } = URLs;
+const { medium, gitConnected } = URLs;
+
+// ── API fetchers ────────────────────────────────────────────
 
 async function fetchBlogsFromMedium(url) {
   try {
     const response = await fetch(url);
     const { items } = await response.json();
-    populateBlogs(items, "blogs");
+    populateBlogs(items, "blogs-list");
   } catch (error) {
-    throw new Error(
-      `Error in fetching the blogs from Medium profile: ${error}`
-    );
-  }
-}
-
-async function fetchReposFromGit(url) {
-  try {
-    const response = await fetch(url);
-    const items = await response.json();
-    populateRepo(items, "repos");
-  } catch (error) {
-    throw new Error(`Error in fetching the blogs from repos: ${error}`);
+    console.error(`Error fetching blogs from Medium: ${error}`);
   }
 }
 
 async function fetchGitConnectedData(url) {
   try {
     const response = await fetch(url);
-    console.log(response);
     const { basics } = await response.json();
-    // populateBlogs(items, "blogs");
     mapBasicResponse(basics);
   } catch (error) {
-    throw new Error(`Error in fetching the blogs from git connected: ${error}`);
+    console.error(`Error fetching gitconnected data: ${error}`);
   }
 }
-
-function mapBasicResponse(basics) {
-  const {
-    name,
-    label,
-    image,
-    email,
-    phone,
-    url,
-    summary,
-    profiles,
-    headline,
-    blog,
-    yearsOfExperience,
-    username,
-    locationAsString,
-    region,
-    karma,
-    id,
-    followers,
-    following,
-    picture,
-    website,
-  } = basics;
-
-  // added title of page
-  window.parent.document.title = name;
-}
-
-function populateBio(items, id) {
-  const bioTag = document.getElementById(id);
-  items.forEach((bioItem) => {
-    const p = getElement("p", null);
-    p.innerHTML = bioItem;
-    bioTag.append(p);
-  });
-}
-
-function populateSkills(items, id) {
-  const skillsTag = document.getElementById(id);
-  items.forEach((item) => {
-    const h3 = getElement("li", null);
-    h3.innerHTML = item;
-
-    const divProgressWrap = getElement("div", "progress-wrap");
-    divProgressWrap.append(h3);
-
-    const divAnimateBox = getElement("div", "col-md-12 animate-box");
-    divAnimateBox.append(divProgressWrap);
-
-    skillsTag.append(divAnimateBox);
-  });
-}
-
-function populatePublication(items) {
-  const skillsTag = document.getElementById('publication');
-  items.forEach((item) => {
-    const h3 = getElement("li", null);
-    h3.innerHTML = item;
-
-    const divProgressWrap = getElement("div", "progress-wrap");
-    divProgressWrap.append(h3);
-
-    const divAnimateBox = getElement("div", "col-md-12 animate-box");
-    divAnimateBox.append(divProgressWrap);
-
-    skillsTag.append(divAnimateBox);
-  });
-}
-
-function populateBlogs(items, id) {
-  const projectdesign = document.getElementById(id);
-  const count = 3; // Number of blogs to display
-
-  for (let i = 0; i < count; i++) {
-      // Create a wrapper for the blog card
-      const blogCard = document.createElement("div");
-      blogCard.className = "blog-card";
-      blogCard.style = `
-          display: flex;
-          flex-direction: column;
-          border-radius: 12px;
-          padding: 16px;
-          font-size: 14px;
-          background: linear-gradient(135deg, rgb(255, 221, 153), rgb(249, 191, 63));
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-          min-height: 150px;
-          cursor: pointer;
-      `;
-
-      // Wrap the card content in an anchor tag
-      const blogLink = document.createElement("a");
-      blogLink.href = items[i].link;
-      blogLink.target = "_blank";
-      blogLink.style = "text-decoration: none; color: black; display: block;";
-
-      blogCard.appendChild(blogLink);
-
-      // Blog Title
-      const blogTitle = document.createElement("h4");
-      blogTitle.className = "blog-heading";
-      blogTitle.innerHTML = items[i].title;
-      blogTitle.style = "margin: 0 0 8px; font-size: 18px; font-weight: bold;";
-      blogLink.appendChild(blogTitle);
-
-      // Publish Date
-      const pubDateEle = document.createElement("p");
-      pubDateEle.className = "publish-date";
-      pubDateEle.innerHTML = getBlogDate(items[i].pubDate);
-      pubDateEle.style = "margin: 0 0 12px; font-size: 12px; color: #555;";
-      blogLink.appendChild(pubDateEle);
-
-      // Blog Description
-      const blogDescription = document.createElement("p");
-      blogDescription.className = "blog-description";
-      const html = items[i].content;
-      const [, doc] = /<p>(.*?)<\/p>/g.exec(html) || [];
-      blogDescription.innerHTML = doc;
-      blogDescription.style = "margin: 0 0 12px; font-size: 12px; color: #666;";
-      blogLink.appendChild(blogDescription);
-
-      // Categories (Tags)
-      const categoriesDiv = document.createElement("div");
-      categoriesDiv.style = "display: flex; gap: 8px; margin-top: 12px;";
-
-      for (const category of items[i].categories) {
-          const badge = document.createElement("span");
-          badge.className = "badge";
-          badge.innerHTML = category;
-          badge.style = `
-              font-size: 12px;
-              padding: 4px 8px;
-              background-color: #007acc;
-              color: white;
-              border-radius: 4px;
-          `;
-          categoriesDiv.appendChild(badge);
-      }
-
-      blogLink.appendChild(categoriesDiv);
-
-      // Append the blog card to the container
-      projectdesign.appendChild(blogCard);
-  }
-}
-
-function populateRepo(items, id) {
-  const projectdesign = document.getElementById(id);
-  const count = 4; // Adjust this count based on the number of repos you want to display
-
-  // Set up a wrapper div to hold repo cards in rows of 2
-  const rowWrapper = document.createElement("div");
-  rowWrapper.style =
-    "display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;";
-  projectdesign.appendChild(rowWrapper);
-
-  for (let i = 0; i < count; i++) {
-    // Create elements for each repo card
-    const repoCard = document.createElement("div");
-    repoCard.className = "repo-card";
-    repoCard.style = `
-          flex: 1 0 48%;  /* Two cards in one row */
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          border-radius: 12px;
-          padding: 16px;
-          font-size: 14px;
-          background: linear-gradient(135deg, #ffdd99, #f9bf3f);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-          transition: transform 0.2s ease-in-out;
-          cursor: pointer;
-      `;
-
-    // Make the card clickable by wrapping the content inside an anchor tag
-    const repoLink = document.createElement("a");
-    repoLink.href = `https://github.com/${items[i].author}/${items[i].name}`;
-    repoLink.target = "_blank";
-    repoLink.style =
-      "text-decoration: none; color: black; display: block; height: 100%;";
-
-    repoCard.appendChild(repoLink);
-
-    // Repository name
-    const repoName = document.createElement("h4");
-    repoName.className = "repo-heading";
-    repoName.innerHTML = items[i].name;
-    repoName.style = "margin: 0; font-size: 18px; font-weight: bold;";
-    repoLink.appendChild(repoName);
-
-    // Repository description
-    const repoDescription = document.createElement("p");
-    repoDescription.className = "repo-description";
-    repoDescription.innerHTML = items[i].description;
-    repoDescription.style = "margin-top: 8px; font-size: 12px; color: #555;";
-    repoLink.appendChild(repoDescription);
-
-    // Stats row (Language, Stars, Forks)
-    const statsRow = document.createElement("div");
-    statsRow.style = `
-          display: flex; 
-          align-items: center; 
-          gap: 16px; 
-          margin-top: 12px; 
-          font-size: 12px; 
-          color: #666;
-      `;
-
-    // Language
-    const languageDiv = document.createElement("div");
-    languageDiv.style = "display: flex; align-items: center; gap: 4px;";
-    languageDiv.innerHTML = `
-          <span style="width: 8px; height: 8px; background-color: #666; border-radius: 50%; display: inline-block;"></span>
-          ${items[i].language}
-      `;
-    statsRow.appendChild(languageDiv);
-
-    // Stars
-    const starsDiv = document.createElement("div");
-    starsDiv.style = "display: flex; align-items: center; gap: 4px;";
-    starsDiv.innerHTML = `
-          <img src="https://img.icons8.com/ios-filled/16/666666/star--v1.png" alt="Stars">
-          ${items[i].stars}
-      `;
-    statsRow.appendChild(starsDiv);
-
-    // Forks
-    const forksDiv = document.createElement("div");
-    forksDiv.style = "display: flex; align-items: center; gap: 4px;";
-    forksDiv.innerHTML = `
-          <img src="https://img.icons8.com/ios-filled/16/666666/code-fork.png" alt="Forks">
-          ${items[i].forks}
-      `;
-    statsRow.appendChild(forksDiv);
-
-    repoLink.appendChild(statsRow);
-
-    // Add the repo card to the row wrapper
-    rowWrapper.appendChild(repoCard);
-  }
-}
-
-function populateExp_Edu(items, id) {
-  let mainContainer = document.getElementById(id);
-
-  for (let i = 0; i < items.length; i++) {
-    let spanTimelineSublabel = document.createElement("span");
-    spanTimelineSublabel.className = "timeline-sublabel";
-    spanTimelineSublabel.innerHTML = items[i].subtitle;
-
-    let spanh2 = document.createElement("span");
-    spanh2.innerHTML = items[i].duration;
-
-    let h2TimelineLabel = document.createElement("h2");
-    h2TimelineLabel.innerHTML = items[i].title;
-    h2TimelineLabel.append(spanh2);
-
-    let divTimelineLabel = document.createElement("div");
-    divTimelineLabel.className = "timeline-label";
-    divTimelineLabel.append(h2TimelineLabel);
-    divTimelineLabel.append(spanTimelineSublabel);
-
-    for (let j = 0; j < items[i].details.length; j++) {
-      let pTimelineText = document.createElement("p");
-      pTimelineText.className = "timeline-text";
-      pTimelineText.innerHTML = "&blacksquare; " + items[i].details[j];
-      divTimelineLabel.append(pTimelineText);
-    }
-
-    let divTags = document.createElement("div");
-    for (let j = 0; j < items[i].tags.length; j++) {
-      let spanTags = document.createElement("span");
-      spanTags.className = "badge";
-      spanTags.innerHTML = items[i].tags[j];
-      divTags.append(spanTags);
-    }
-    divTimelineLabel.append(divTags);
-
-    let iFa = document.createElement("i");
-    iFa.className = "fa fa-" + items[i].icon;
-
-    let divTimelineIcon = document.createElement("div");
-    divTimelineIcon.className = "timeline-icon color-2";
-    divTimelineIcon.append(iFa);
-
-    let divTimelineEntryInner = document.createElement("div");
-    divTimelineEntryInner.className = "timeline-entry-inner";
-    divTimelineEntryInner.append(divTimelineIcon);
-    divTimelineEntryInner.append(divTimelineLabel);
-
-    let article = document.createElement("article");
-    article.className = "timeline-entry animate-box";
-    article.append(divTimelineEntryInner);
-
-    mainContainer.append(article);
-  }
-
-  let divTimelineIcon = document.createElement("div");
-  divTimelineIcon.className = "timeline-icon color-2";
-
-  let divTimelineEntryInner = document.createElement("div");
-  divTimelineEntryInner.className = "timeline-entry-inner";
-  divTimelineEntryInner.append(divTimelineIcon);
-
-  let article = document.createElement("article");
-  article.className = "timeline-entry begin animate-box";
-  article.append(divTimelineEntryInner);
-
-  mainContainer.append(article);
-}
-
-function populateLinks(items, id) {
-  let footer = document.getElementById(id);
-
-  items.forEach(function (item) {
-    if (item.label !== "copyright-text") {
-      let span = document.createElement("span");
-      span.className = "col";
-
-      let p = document.createElement("p");
-      p.className = "col-title";
-      p.innerHTML = item.label;
-      span.append(p);
-
-      let nav = document.createElement("nav");
-      nav.className = "col-list";
-
-      let ul = document.createElement("ul");
-      item.data.forEach(function (data) {
-        let li = document.createElement("li");
-        if (data.func) {
-          let a = document.createElement("a");
-          a.setAttribute("onclick", data.func);
-          a.innerHTML = data.text;
-          li.append(a);
-        } else {
-          li.innerHTML = data.text;
-        }
-        ul.append(li);
-      });
-      nav.append(ul);
-      span.append(nav);
-      footer.append(span);
-    }
-
-    if (item.label === "copyright-text") {
-      let div = document.createElement("div");
-      div.className = "copyright-text no-print";
-      item.data.forEach(function (copyright) {
-        let p = document.createElement("p");
-        p.innerHTML = copyright;
-        div.append(p);
-      });
-      footer.append(div);
-    }
-  });
-}
-
-function getElement(tagName, className) {
-  let item = document.createElement(tagName);
-  item.className = className;
-  return item;
-}
-
-function getBlogDate(publishDate) {
-  const elapsed = Date.now() - Date.parse(publishDate);
-
-  // Time conversions in milliseconds
-  const msPerSecond = 1000;
-  const msPerMinute = msPerSecond * 60;
-  const msPerHour = msPerMinute * 60;
-  const msPerDay = msPerHour * 24;
-  const msPerMonth = msPerDay * 30;
-  const msPerYear = msPerDay * 365;
-
-  if (elapsed < msPerMinute) {
-    const seconds = Math.floor(elapsed / msPerSecond);
-    return `${seconds} seconds ago`;
-  } else if (elapsed < msPerHour) {
-    const minutes = Math.floor(elapsed / msPerMinute);
-    return `${minutes} minutes ago`;
-  } else if (elapsed < msPerDay) {
-    const hours = Math.floor(elapsed / msPerHour);
-    return `${hours} hours ago`;
-  } else if (elapsed < msPerMonth) {
-    const days = Math.floor(elapsed / msPerDay);
-    return days == 1 ? `${days} day ago` : `${days} days ago`;
-  } else if (elapsed < msPerYear) {
-    const months = Math.floor(elapsed / msPerMonth);
-    return months == 1 ? `${months} month ago` : `${months} months ago`;
-  } else {
-    const years = Math.floor(elapsed / msPerYear);
-    return years == 1 ? `${years} year ago` : `${years} years ago`;
-  }
-}
-
 
 async function fetchQiitaData(username) {
   const url = `https://qiita.com/${username}`;
   try {
     const response = await fetch(url);
     const htmlText = await response.text();
-    
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, "text/html");
-
     const contributions = doc.querySelector('a[href$="/contributions"] span')?.textContent || "N/A";
-    const posts = doc.querySelector('a[href$="/OSAKO"] span')?.textContent || "N/A";
-    const followers = doc.querySelector('a[href$="/followers"]')?.textContent.trim() || "N/A";
-    const following = doc.querySelector('a[href$="/following_users"]')?.textContent.trim() || "N/A";
-
+    const posts         = doc.querySelector('a[href$="/OSAKO"] span')?.textContent || "N/A";
+    const followers     = doc.querySelector('a[href$="/followers"]')?.textContent.trim() || "N/A";
+    const following     = doc.querySelector('a[href$="/following_users"]')?.textContent.trim() || "N/A";
     populateQiitaCard({ contributions, posts, followers, following });
   } catch (error) {
     console.error("Error fetching Qiita data:", error);
   }
 }
 
-function populateQiitaCard({ contributions, posts, followers, following }) {
-  const qiitaCard = document.querySelector(".qiita-card");
-  qiitaCard.innerHTML = `
-    <div style="border-radius: 12px; padding: 16px; font-size: 14px; background: linear-gradient(135deg, #99ccff, #6699ff); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-      <h3 style="margin: 0; font-size: 18px; font-weight: bold;">Qiita Stats</h3>
-      <p>Contributions: ${contributions}</p>
-      <p>Posts: ${posts}</p>
-      <p>Followers: ${followers}</p>
-      <p>Following: ${following}</p>
-    </div>
-  `;
+// ── Data mappers ────────────────────────────────────────────
+
+function mapBasicResponse(basics) {
+  const { name } = basics;
+  window.parent.document.title = name;
 }
 
+// ── Populate functions ──────────────────────────────────────
 
-function populatePortfolio(items, id) {
-  const portfolioSection = document.getElementById(id);
+function populateBio(items, id) {
+  const container = document.getElementById(id);
+  if (!container) return;
   items.forEach((item) => {
-    const container = document.createElement("div");
-    container.className = `portfolio-item animate-box ${item.align}-align`;
-
-    container.innerHTML = `
-      <div class="service-body">
-        <img src="${item.image}" alt="${item.serviceName}">
-        <div class="service-content">
-          <h2><span style="color: #f9bf3f">${item.serviceName}</span></h2>
-          <p>${item.description}</p>
-          <div class="gis-data">
-            <h4>Expected Data:</h4>
-            <ul>
-              ${item.gisData.map(data => `<li>${data}</li>`).join('')}
-            </ul>
-          </div>
-        </div>
-      </div>
-    `;
-    portfolioSection.appendChild(container);
+    const p = document.createElement("p");
+    p.innerHTML = item;
+    container.appendChild(p);
   });
 }
 
+function populateSkills(items, id) {
+  const container = document.getElementById(id);
+  if (!container) return;
+  items.forEach((item) => {
+    const badge = document.createElement("span");
+    badge.className = "scroll-animate";
+    badge.style.cssText = `
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: rgba(0,212,180,0.08);
+      border: 1px solid rgba(0,212,180,0.25);
+      color: #00d4b4;
+      line-height: 1.4;
+    `;
+    badge.innerHTML = item;
+    container.appendChild(badge);
+  });
+}
+
+function populatePublication(items) {
+  const container = document.getElementById("publication-list");
+  if (!container) return;
+  items.forEach((item) => {
+    const li = document.createElement("li");
+    li.className = "glass-card scroll-animate";
+    li.style.cssText = "padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start;";
+    li.innerHTML = `
+      <div style="
+        flex-shrink: 0;
+        width: 2rem; height: 2rem;
+        border-radius: 50%;
+        background: rgba(0,212,180,0.1);
+        display: flex; align-items: center; justify-content: center;
+        margin-top: 2px;
+      ">
+        <i class="fa-solid fa-file-lines" style="font-size: 0.75rem; color: #00d4b4;"></i>
+      </div>
+      <p style="font-size: 0.875rem; color: #cbd5e1; line-height: 1.7; margin: 0;">${item}</p>
+    `;
+    container.appendChild(li);
+  });
+}
+
+function populateBlogs(items, id) {
+  const container = document.getElementById(id);
+  if (!container) return;
+  const count = Math.min(3, items.length);
+
+  for (let i = 0; i < count; i++) {
+    const card = document.createElement("a");
+    card.href   = items[i].link;
+    card.target = "_blank";
+    card.rel    = "noopener noreferrer";
+    card.className = "glass-card scroll-animate";
+    card.style.cssText = `
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+      text-decoration: none;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+    `;
+
+    const html = items[i].content || "";
+    const [, excerpt] = /<p>(.*?)<\/p>/g.exec(html) || [];
+
+    const categoriesHtml = (items[i].categories || [])
+      .slice(0, 3)
+      .map(c => `
+        <span style="
+          font-size: 0.75rem;
+          padding: 3px 10px;
+          border-radius: 9999px;
+          background: rgba(0,212,180,0.12);
+          color: #00d4b4;
+        ">${c}</span>
+      `).join("");
+
+    card.innerHTML = `
+      <div style="display: flex; flex-wrap: wrap; gap: 6px;">${categoriesHtml}</div>
+      <h3 style="
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #f1f5f9;
+        line-height: 1.4;
+        margin: 0;
+      ">${items[i].title}</h3>
+      <p style="
+        font-size: 0.8125rem;
+        color: #94a3b8;
+        line-height: 1.65;
+        flex: 1;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      ">${excerpt || ""}</p>
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        margin-top: auto;
+      ">
+        <span style="font-size: 0.75rem; color: #64748b;">${getBlogDate(items[i].pubDate)}</span>
+        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem; color: #00d4b4;"></i>
+      </div>
+    `;
+
+    card.addEventListener("mouseenter", () => {
+      card.style.transform = "translateY(-4px)";
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "translateY(0)";
+    });
+
+    container.appendChild(card);
+  }
+}
+
+function populateExp_Edu(items, id) {
+  const container = document.getElementById(id);
+  if (!container) return;
+
+  items.forEach((item) => {
+    const el = document.createElement("div");
+    el.className = "timeline-item scroll-animate";
+
+    const tagsHtml = (item.tags || []).map(tag => `
+      <span style="
+        font-size: 0.75rem;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        font-weight: 500;
+        background: rgba(0,212,180,0.08);
+        color: #00d4b4;
+        border: 1px solid rgba(0,212,180,0.2);
+      ">${tag}</span>
+    `).join("");
+
+    const detailsHtml = (item.details || []).map(d => `
+      <li style="
+        font-size: 0.875rem;
+        color: #94a3b8;
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        line-height: 1.6;
+      ">
+        <span style="color: #00d4b4; flex-shrink: 0; margin-top: 3px;">▸</span>
+        <span>${d}</span>
+      </li>
+    `).join("");
+
+    el.innerHTML = `
+      <div class="glass-card" style="padding: 1.5rem;">
+        <div style="
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 0.75rem;
+          margin-bottom: ${item.details.length > 0 || item.tags.length > 0 ? '1rem' : '0'};
+        ">
+          <div>
+            <h3 style="
+              font-family: 'Space Grotesk', sans-serif;
+              font-weight: 600;
+              font-size: 1.0625rem;
+              color: #f1f5f9;
+              margin: 0 0 4px;
+              line-height: 1.3;
+            ">${item.title}</h3>
+            <p style="font-size: 0.875rem; color: #00d4b4; font-weight: 500; margin: 0;">${item.subtitle}</p>
+          </div>
+          <span style="
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            white-space: nowrap;
+            background: rgba(255,255,255,0.05);
+            color: #94a3b8;
+            border: 1px solid rgba(255,255,255,0.08);
+            flex-shrink: 0;
+          ">${item.duration}</span>
+        </div>
+        ${item.details.length > 0 ? `<ul style="list-style: none; padding: 0; margin: 0 0 ${item.tags.length > 0 ? '1rem' : '0'}; display: flex; flex-direction: column; gap: 6px;">${detailsHtml}</ul>` : ""}
+        ${item.tags.length > 0 ? `<div style="display: flex; flex-wrap: wrap; gap: 8px;">${tagsHtml}</div>` : ""}
+      </div>
+    `;
+
+    container.appendChild(el);
+  });
+}
+
+function populateLinks(items, id) {
+  const footerContent   = document.getElementById(id);
+  const footerCopyright = document.getElementById("footer-copyright");
+
+  items.forEach((item) => {
+    if (item.label !== "copyright-text") {
+      const col = document.createElement("div");
+
+      const heading = document.createElement("h3");
+      heading.style.cssText = `
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: #e2e8f0;
+        margin: 0 0 1rem;
+      `;
+      heading.innerHTML = item.label;
+      col.appendChild(heading);
+
+      const ul = document.createElement("ul");
+      ul.style.cssText = "list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;";
+
+      item.data.forEach((data) => {
+        const li = document.createElement("li");
+        li.style.cssText = "font-size: 0.875rem; color: #94a3b8; line-height: 1.6;";
+        if (data.func) {
+          li.innerHTML = `<span onclick="${data.func}" style="cursor: pointer; color: #94a3b8;">${data.text}</span>`;
+        } else {
+          li.innerHTML = data.text;
+        }
+        ul.appendChild(li);
+      });
+
+      col.appendChild(ul);
+      if (footerContent) footerContent.appendChild(col);
+
+    } else {
+      item.data.forEach((copyright) => {
+        const p = document.createElement("p");
+        p.style.cssText = "margin: 0; font-size: 0.8125rem;";
+        p.innerHTML = copyright;
+        if (footerCopyright) footerCopyright.appendChild(p);
+      });
+    }
+  });
+}
+
+function populateQiitaCard({ contributions, posts, followers, following }) {
+  const footerContent = document.getElementById("footer-content");
+  if (!footerContent) return;
+
+  const col = document.createElement("div");
+  col.className = "qiita-card";
+
+  const heading = document.createElement("h3");
+  heading.style.cssText = `
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #e2e8f0;
+    margin: 0 0 1rem;
+  `;
+  heading.innerHTML = `<i class="fa-brands fa-quora" style="color: #00d4b4; margin-right: 6px;"></i>Qiita Stats`;
+  col.appendChild(heading);
+
+  const stats = [
+    { label: "Contributions", value: contributions },
+    { label: "Posts",         value: posts },
+    { label: "Followers",     value: followers },
+    { label: "Following",     value: following },
+  ];
+
+  const ul = document.createElement("ul");
+  ul.style.cssText = "list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;";
+
+  stats.forEach(({ label, value }) => {
+    const li = document.createElement("li");
+    li.style.cssText = "font-size: 0.875rem; color: #94a3b8; display: flex; justify-content: space-between;";
+    li.innerHTML = `<span>${label}</span><span style="color: #00d4b4; font-weight: 600;">${value}</span>`;
+    ul.appendChild(li);
+  });
+
+  col.appendChild(ul);
+  footerContent.appendChild(col);
+}
+
+function populatePortfolio(items, id) {
+  const container = document.getElementById(id);
+  if (!container) return;
+
+  items.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "glass-card scroll-animate";
+    card.style.cssText = "overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease;";
+
+    const gisDataHtml = (item.gisData || []).map(d => `
+      <span style="
+        font-size: 0.75rem;
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.05);
+        color: #94a3b8;
+        border: 1px solid rgba(255,255,255,0.08);
+      ">${d}</span>
+    `).join("");
+
+    card.innerHTML = `
+      <div style="position: relative; height: 200px; overflow: hidden;">
+        <img src="${item.image}" alt="${item.serviceName}"
+             style="width: 100%; height: 100%; object-fit: cover;" />
+        <div style="
+          position: absolute; inset: 0;
+          background: linear-gradient(to bottom, transparent 30%, rgba(10,15,30,0.85));
+        "></div>
+      </div>
+      <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+        <h3 class="gradient-text" style="
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 700;
+          font-size: 1.25rem;
+          margin: 0;
+        ">${item.serviceName}</h3>
+        <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.65; margin: 0;">${item.description}</p>
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin: 0 0 8px;">Data Sources</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">${gisDataHtml}</div>
+        </div>
+      </div>
+    `;
+
+    card.addEventListener("mouseenter", () => {
+      card.style.transform = "translateY(-4px)";
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "translateY(0)";
+    });
+
+    container.appendChild(card);
+  });
+}
+
+// ── Helpers ─────────────────────────────────────────────────
+
+function getBlogDate(publishDate) {
+  const elapsed = Date.now() - Date.parse(publishDate);
+  const s  = 1000, m = s * 60, h = m * 60, d = h * 24, mo = d * 30, y = d * 365;
+
+  if (elapsed < m)  return `${Math.floor(elapsed / s)} seconds ago`;
+  if (elapsed < h)  return `${Math.floor(elapsed / m)} minutes ago`;
+  if (elapsed < d)  return `${Math.floor(elapsed / h)} hours ago`;
+  if (elapsed < mo) { const n = Math.floor(elapsed / d);  return `${n} day${n === 1 ? "" : "s"} ago`; }
+  if (elapsed < y)  { const n = Math.floor(elapsed / mo); return `${n} month${n === 1 ? "" : "s"} ago`; }
+  const n = Math.floor(elapsed / y);
+  return `${n} year${n === 1 ? "" : "s"} ago`;
+}
+
+// ── Initialize ──────────────────────────────────────────────
+
 populatePortfolio(portfolio, "portfolio");
-
-fetchQiitaData("OSAKO");
-
-
 populateBio(bio, "bio");
-
-populateSkills(skills, "skills");
+populateSkills(skills, "skills-list");
+populateExp_Edu(experience, "experience-list");
+populatePublication(publication);
+populateExp_Edu(education, "education-list");
+populateLinks(footer, "footer-content");
 
 fetchBlogsFromMedium(medium);
-fetchReposFromGit(gitRepo);
 fetchGitConnectedData(gitConnected);
-
-populateExp_Edu(experience, "experience");
-populatePublication(publication);
-populateExp_Edu(education, "education");
-
-populateLinks(footer, "footer");
+fetchQiitaData("OSAKO");

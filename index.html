@@ -4,158 +4,234 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title></title>
+  <title>Seima Osako | Geospatial Data Scientist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfolio webpage of Seima Osako" />
-  <meta name="keywords" content="portfolio,website,personal website,github,projects,computer science and engineering" />
+  <meta name="description" content="Portfolio of Seima Osako - Geospatial Data Scientist & Remote Sensing Expert" />
+  <meta name="keywords" content="geospatial, remote sensing, GeoAI, portfolio, data scientist, satellite imagery" />
   <meta name="author" content="Seima Osako" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="icon" type="image/png" href="./logo.png" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/animate.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 
-  <script src="js/modernizr-2.6.2.min.js"></script>
+  <link rel="icon" type="image/png" href="./logo.png" />
+
+  <!-- Google Fonts: Inter + Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Tailwind CSS Play CDN + Custom Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:      '#0a0f1e',
+            surface: '#111827',
+            teal:    '#00d4b4',
+            green:   '#4ade80',
+            muted:   '#94a3b8',
+          },
+          fontFamily: {
+            sans:    ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS (keyframes, timeline, glassmorphism) -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Main JS (ES Module) -->
   <script type="module" src="index.js"></script>
-  <script src="js/profile-card.js"></script>
 </head>
 
-<body>
-  <div id="colorlib-page">
-    <div class="container-wrap">
-      <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar"
-        aria-expanded="false" aria-controls="navbar"><i></i></a>
-      <aside id="colorlib-aside" role="complementary" class="border js-fullheight no-print">
-        <div class="text-center">
-          <div class="author-img">
-            <img alt="profile-img" src="./logo.png" />
-          </div>
-          <h1 id="colorlib-logo"><a href="./index.html">Seima Osako</a></h1>
-        </div>
-        <nav id="colorlib-main-menu" role="navigation" class="navbar" style="padding-top: 2em">
-          <div id="navbar" class="collapse">
-            <ul>
-              <li><a href="#" data-nav-section="about">About</a></li>
-              <li><a href="#" data-nav-section="skills">Skills</a></li>
-              <li><a href="#" data-nav-section="portfolio">Geo Services</a></li>
-              <!-- <li>
-                  <a href="#" data-nav-section="repos">Top Repositories</a>
-                </li> -->
-              <li><a href="#" data-nav-section="blogs">Blogs</a></li>
-              <li>
-                <a href="#" data-nav-section="experience">Work Experience</a>
-              </li>
-              <li>
-                <a href="#" data-nav-section="publication">Publication & certifications</a>
-              </li>
-              <li><a href="#" data-nav-section="education">Education</a></li>
-            </ul>
-          </div>
-        </nav>
-      </aside>
-      <div id="colorlib-main">
-        <section class="colorlib-about" data-section="about">
-          <div class="colorlib-narrow-content">
-            <div class="row animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1><span style="color: #f9bf3f">About</span></h1>
-                <div id="bio"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="colorlib-skills" data-section="skills">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1><span style="color: #f9bf3f">Skills</span></h1>
-              </div>
-            </div>
-            <div id="skills" class="row"></div>
-          </div>
-        </section>
-        <section class="colorlib-portfolio" data-section="portfolio">
-          <div class="colorlib-wide-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1><span style="color: #f9bf3f">Geo Services</span></h1>
-              </div>
-            </div>
-            <div id="portfolio"></div>
-          </div>
-        </section>
-        <section class="colorlib-blogs no-print" data-section="blogs">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <a href="https://medium.com/@seimaosako" target="_blank" style="color: inherit">
-                  <h1>
-                    Latest <span style="color: #f9bf3f">Blogs</span>
-                    <i class="fa fa-external-link" aria-hidden="true" style="font-size: 30px"></i>
-                  </h1>
-                </a>
-              </div>
-            </div>
-            <ul id="accordion" class="accordion animate-box" data-animate-effect="fadeInLeft">
-              <li class="open">
-                <ul id="blogs" class="submenu" style="
-                      display: flex;
-                      padding: 10px;
-                      flex-direction: column;
-                      gap: 10px;
-                    "></ul>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section class="colorlib-experience" data-section="experience">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>Work <span style="color: #f9bf3f">Experience</span></h1>
-              </div>
-            </div>
-            <div class="timeline-centered" id="experience"></div>
-          </div>
-        </section>
-        <section class="colorlib-skills" data-section="publication">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>
-                  <span style="color: #f9bf3f">Publication & certifications</span>
-                </h1>
-                <div id="publication" class="row"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="colorlib-education" data-section="education">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1><span style="color: #f9bf3f">Education</span></h1>
-              </div>
-            </div>
-            <div class="timeline-centered" id="education"></div>
-          </div>
-        </section>
-        <section class="colorlib-footer no-print" data-section="footer">
-          <div class="colorlib-narrow-content">
-            <footer class="footer" id="footer"></footer>
-          </div>
-        </section>
+<body style="background-color: #0a0f1e;" class="text-slate-200 font-sans">
+
+  <!-- ===================== STICKY NAV ===================== -->
+  <nav id="topnav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="./index.html" class="font-display text-xl font-bold tracking-wider">
+        <span style="color: #00d4b4;">geo</span><span class="text-white">fluct</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <li><a href="#about"       data-nav-section="about"       class="nav-link text-slate-400 hover:text-teal transition-colors duration-200">About</a></li>
+        <li><a href="#skills"      data-nav-section="skills"      class="nav-link text-slate-400 hover:text-teal transition-colors duration-200">Skills</a></li>
+        <li><a href="#services"    data-nav-section="portfolio"   class="nav-link text-slate-400 hover:text-teal transition-colors duration-200">Services</a></li>
+        <li><a href="#blogs"       data-nav-section="blogs"       class="nav-link text-slate-400 hover:text-teal transition-colors duration-200">Blogs</a></li>
+        <li><a href="#experience"  data-nav-section="experience"  class="nav-link text-slate-400 hover:text-teal transition-colors duration-200">Experience</a></li>
+        <li><a href="#education"   data-nav-section="education"   class="nav-link text-slate-400 hover:text-teal transition-colors duration-200">Education</a></li>
+        <li><a href="#publication" data-nav-section="publication" class="nav-link text-slate-400 hover:text-teal transition-colors duration-200">Publications</a></li>
+      </ul>
+
+      <!-- Hamburger (Mobile) -->
+      <button id="menu-toggle" class="md:hidden text-slate-400 hover:text-teal transition-colors focus:outline-none" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t" style="background: rgba(17,24,39,0.97); border-color: rgba(255,255,255,0.1);">
+      <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+        <li><a href="#about"       data-nav-section="about"       class="nav-link block text-slate-400 hover:text-teal transition-colors">About</a></li>
+        <li><a href="#skills"      data-nav-section="skills"      class="nav-link block text-slate-400 hover:text-teal transition-colors">Skills</a></li>
+        <li><a href="#services"    data-nav-section="portfolio"   class="nav-link block text-slate-400 hover:text-teal transition-colors">Services</a></li>
+        <li><a href="#blogs"       data-nav-section="blogs"       class="nav-link block text-slate-400 hover:text-teal transition-colors">Blogs</a></li>
+        <li><a href="#experience"  data-nav-section="experience"  class="nav-link block text-slate-400 hover:text-teal transition-colors">Experience</a></li>
+        <li><a href="#education"   data-nav-section="education"   class="nav-link block text-slate-400 hover:text-teal transition-colors">Education</a></li>
+        <li><a href="#publication" data-nav-section="publication" class="nav-link block text-slate-400 hover:text-teal transition-colors">Publications</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    style="background-color: #0a0f1e;
+           background-image: linear-gradient(rgba(0,212,180,0.05) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(0,212,180,0.05) 1px, transparent 1px);
+           background-size: 60px 60px;">
+
+    <!-- Decorative gradient blobs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+         style="background: radial-gradient(circle, rgba(0,212,180,0.18), transparent); filter: blur(72px);"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+         style="background: radial-gradient(circle, rgba(74,222,128,0.18), transparent); filter: blur(72px);"></div>
+
+    <div class="relative text-center px-6 max-w-5xl mx-auto">
+      <p class="text-sm font-semibold uppercase tracking-widest mb-4 fade-in-up" style="color: #00d4b4; animation-delay: 0s;">
+        Hello, I'm
+      </p>
+      <h1 class="font-display font-bold mb-6 fade-in-up leading-none"
+          style="font-size: clamp(2.5rem, 9vw, 6.5rem);
+                 animation-delay: 0.15s;
+                 background: linear-gradient(135deg, #00d4b4 0%, #4ade80 100%);
+                 -webkit-background-clip: text;
+                 -webkit-text-fill-color: transparent;
+                 background-clip: text;">
+        SEIMA OSAKO
+      </h1>
+      <div class="text-2xl md:text-3xl text-slate-400 mb-10 fade-in-up font-display flex items-center justify-center"
+           style="animation-delay: 0.35s; min-height: 3rem;">
+        <span id="typewriter-text"></span><span class="typewriter-cursor">|</span>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up" style="animation-delay: 0.55s;">
+        <a href="#about"
+           class="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+           style="background: linear-gradient(135deg, #00d4b4, #4ade80); color: #0a0f1e;">
+          View My Work <i class="fa-solid fa-arrow-down"></i>
+        </a>
+        <a href="#footer"
+           class="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition-all duration-300"
+           style="color: #00d4b4; border: 1px solid rgba(0,212,180,0.5);"
+           onmouseover="this.style.background='rgba(0,212,180,0.08)'"
+           onmouseout="this.style.background='transparent'">
+          Contact Me
+        </a>
       </div>
     </div>
-  </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" style="color: #94a3b8;">
+      <i class="fa-solid fa-chevron-down text-xl"></i>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" data-section="about" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-title font-display font-bold text-4xl mb-16">About <span class="gradient-text">Me</span></h2>
+      <div class="grid md:grid-cols-3 gap-12 items-start scroll-animate">
+        <div class="flex justify-center md:justify-start">
+          <img src="./logo.png" alt="Seima Osako"
+               class="w-56 h-56 rounded-full object-cover"
+               style="border: 2px solid rgba(0,212,180,0.3); box-shadow: 0 0 0 6px rgba(0,212,180,0.07), 0 25px 50px rgba(0,0,0,0.5);" />
+        </div>
+        <div class="md:col-span-2 space-y-4 text-slate-300 leading-relaxed text-base" id="bio"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" data-section="skills" class="py-24 px-6" style="background-color: #111827;">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-title font-display font-bold text-4xl mb-16">My <span class="gradient-text">Skills</span></h2>
+      <div id="skills-list" class="flex flex-wrap gap-3"></div>
+    </div>
+  </section>
+
+  <!-- ===================== GEO SERVICES ===================== -->
+  <section id="services" data-section="portfolio" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-title font-display font-bold text-4xl mb-16">Geo <span class="gradient-text">Services</span></h2>
+      <div id="portfolio" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- ===================== BLOGS ===================== -->
+  <section id="blogs" data-section="blogs" class="py-24 px-6 no-print" style="background-color: #111827;">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-16 flex items-center gap-4">
+        <h2 class="section-title font-display font-bold text-4xl">Latest <span class="gradient-text">Blogs</span></h2>
+        <a href="https://medium.com/@seimaosako" target="_blank" rel="noopener noreferrer"
+           class="hover:opacity-70 transition-opacity" style="color: #00d4b4; margin-left: 4px;">
+          <i class="fa-solid fa-arrow-up-right-from-square text-xl"></i>
+        </a>
+      </div>
+      <div id="blogs-list" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience" data-section="experience" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-title font-display font-bold text-4xl mb-16">Work <span class="gradient-text">Experience</span></h2>
+      <div id="experience-list" class="timeline"></div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section id="education" data-section="education" class="py-24 px-6" style="background-color: #111827;">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-title font-display font-bold text-4xl mb-16"><span class="gradient-text">Education</span></h2>
+      <div id="education-list" class="timeline"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PUBLICATIONS ===================== -->
+  <section id="publication" data-section="publication" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-title font-display font-bold text-4xl mb-16">Publications &amp; <span class="gradient-text">Certifications</span></h2>
+      <ul id="publication-list" class="space-y-4"></ul>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <section id="footer" data-section="footer" class="py-16 px-6 no-print"
+           style="background-color: #111827; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-12 flex items-center gap-3">
+        <span class="font-display text-2xl font-bold" style="color: #00d4b4;">geo</span><span class="font-display text-2xl font-bold text-white">fluct</span>
+        <span class="text-slate-500 text-sm ml-2">Geospatial Data Analysis &amp; Consultancy</span>
+      </div>
+      <footer id="footer-content" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10"></footer>
+      <div id="footer-copyright" class="text-center text-sm pt-8" style="color: #64748b; border-top: 1px solid rgba(255,255,255,0.08);"></div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
   <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
   <script src="js/main.js"></script>
+
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
     data-cf-beacon='{"token": "a26226880acd498b9671f04855b50f6c"}'></script>
-  <!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>

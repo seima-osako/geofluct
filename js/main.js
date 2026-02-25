@@ -1,192 +1,163 @@
 (function () {
   "use strict";
 
-  var isMobile = {
-    any: function () {
-      return /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
-    },
-  };
+  // ── Mobile menu toggle ──────────────────────────────────
+  var menuToggle = document.getElementById("menu-toggle");
+  var mobileMenu = document.getElementById("mobile-menu");
 
-  var fullHeight = function () {
-    if (!isMobile.any()) {
-      $(".js-fullheight").css("height", $(window).height());
-      $(window).resize(function () {
-        $(".js-fullheight").css("height", $(window).height());
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener("click", function () {
+      mobileMenu.classList.toggle("hidden");
+      var icon = menuToggle.querySelector("i");
+      if (icon) {
+        icon.className = mobileMenu.classList.contains("hidden")
+          ? "fa-solid fa-bars text-xl"
+          : "fa-solid fa-xmark text-xl";
+      }
+    });
+
+    // Close when a menu link is clicked
+    mobileMenu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        mobileMenu.classList.add("hidden");
+        var icon = menuToggle.querySelector("i");
+        if (icon) icon.className = "fa-solid fa-bars text-xl";
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener("click", function (e) {
+      if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.add("hidden");
+        var icon = menuToggle.querySelector("i");
+        if (icon) icon.className = "fa-solid fa-bars text-xl";
+      }
+    });
+  }
+
+  // ── Nav frosted glass on scroll ─────────────────────────
+  var topnav = document.getElementById("topnav");
+  window.addEventListener("scroll", function () {
+    if (topnav) {
+      if (window.scrollY > 40) {
+        topnav.classList.add("scrolled");
+      } else {
+        topnav.classList.remove("scrolled");
+      }
+    }
+  });
+
+  // ── Smooth scroll for anchor links ──────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var href = a.getAttribute("href");
+      if (!href || href === "#") return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var navHeight = topnav ? topnav.offsetHeight : 80;
+        var top = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+        window.scrollTo({ top: top, behavior: "smooth" });
+      }
+    });
+  });
+
+  // ── Active nav link via IntersectionObserver ────────────
+  var sections = document.querySelectorAll("section[data-section]");
+  var navLinks = document.querySelectorAll(".nav-link");
+
+  if (sections.length > 0 && "IntersectionObserver" in window) {
+    var sectionObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var sectionName = entry.target.getAttribute("data-section");
+            navLinks.forEach(function (link) {
+              link.classList.remove("active");
+              if (link.getAttribute("data-nav-section") === sectionName) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: "-15% 0px -75% 0px" }
+    );
+
+    sections.forEach(function (section) {
+      sectionObserver.observe(section);
+    });
+  }
+
+  // ── Scroll-reveal animation via IntersectionObserver ────
+  if ("IntersectionObserver" in window) {
+    var animObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            animObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    function observeAnimatables() {
+      document.querySelectorAll(".scroll-animate:not([data-observed])").forEach(function (el) {
+        el.setAttribute("data-observed", "1");
+        animObserver.observe(el);
       });
     }
-  };
 
-  var counterWayPoint = function () {
-    if ($("#colorlib-counter").length > 0) {
-      $("#colorlib-counter").waypoint(
-        function (direction) {
-          if (direction === "down" && !$(this.element).hasClass("animated")) {
-            setTimeout(counter, 400);
-            $(this.element).addClass("animated");
-          }
-        },
-        { offset: "90%" }
-      );
+    // Observe existing elements
+    observeAnimatables();
+
+    // Watch for dynamically added elements (from index.js populate calls)
+    var mutationObserver = new MutationObserver(observeAnimatables);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // ── Typewriter animation ────────────────────────────────
+  var typewriterEl = document.getElementById("typewriter-text");
+  var phrases = [
+    "Geospatial Data Scientist",
+    "GeoAI Engineer",
+    "Environmental Analyst",
+  ];
+  var phraseIndex = 0;
+  var charIndex   = 0;
+  var isDeleting  = false;
+
+  function typeWrite() {
+    if (!typewriterEl) return;
+    var current = phrases[phraseIndex];
+
+    if (isDeleting) {
+      typewriterEl.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typewriterEl.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
     }
-  };
 
-  var contentWayPoint = function () {
-    var i = 0;
-    $(".animate-box").waypoint(
-      function (direction) {
-        if (direction === "down" && !$(this.element).hasClass("animated")) {
-          i++;
-          $(this.element).addClass("item-animate");
-          setTimeout(function () {
-            $("body .animate-box.item-animate").each(function (k) {
-              var el = $(this);
-              setTimeout(
-                function () {
-                  var effect = el.data("animate-effect");
-                  el.addClass(effect ? `${effect} animated` : "fadeInUp animated");
-                  el.removeClass("item-animate");
-                },
-                k * 200,
-                "easeInOutExpo"
-              );
-            });
-          }, 100);
-        }
-      },
-      { offset: "85%" }
-    );
-  };
+    var delay = isDeleting ? 45 : 95;
 
-  var burgerMenu = function () {
-    $(".js-colorlib-nav-toggle").on("click", function (event) {
-      event.preventDefault();
-      var $this = $(this);
-      $("body").toggleClass("offcanvas");
-      $this.toggleClass("active");
-    });
-  };
+    if (!isDeleting && charIndex === current.length) {
+      delay = 2200;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      delay = 400;
+    }
 
-  var mobileMenuOutsideClick = function () {
-    $(document).click(function (e) {
-      var container = $("#colorlib-aside, .js-colorlib-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        $("body").removeClass("offcanvas");
-        $(".js-colorlib-nav-toggle").removeClass("active");
-      }
-    });
+    setTimeout(typeWrite, delay);
+  }
 
-    $(window).scroll(function () {
-      if ($("body").hasClass("offcanvas")) {
-        $("body").removeClass("offcanvas");
-        $(".js-colorlib-nav-toggle").removeClass("active");
-      }
-    });
-  };
+  // Start typewriter after hero entrance animation finishes
+  if (typewriterEl) {
+    setTimeout(typeWrite, 1000);
+  }
 
-  var clickMenu = function () {
-    $('#navbar a:not([class="external"])').click(function (event) {
-      var section = $(this).data("nav-section"),
-        navbar = $("#navbar");
-
-      if ($('[data-section="' + section + '"]').length) {
-        $("html, body").animate(
-          {
-            scrollTop: $('[data-section="' + section + '"]').offset().top - 55,
-          },
-          500
-        );
-      }
-
-      if (navbar.is(":visible")) {
-        navbar.removeClass("in");
-        navbar.attr("aria-expanded", "false");
-        $(".js-colorlib-nav-toggle").removeClass("active");
-      }
-
-      event.preventDefault();
-      return false;
-    });
-  };
-
-  var navActive = function (section) {
-    var $el = $("#navbar > ul");
-    $el.find("li").removeClass("active");
-    $el.each(function () {
-      $(this)
-        .find('a[data-nav-section="' + section + '"]')
-        .closest("li")
-        .addClass("active");
-    });
-  };
-
-  var navigationSection = function () {
-    var $section = $("section[data-section]");
-
-    $section.waypoint(
-      function (direction) {
-        if (direction === "down") {
-          navActive($(this.element).data("section"));
-        }
-      },
-      {
-        offset: "150px",
-      }
-    );
-
-    $section.waypoint(
-      function (direction) {
-        if (direction === "up") {
-          navActive($(this.element).data("section"));
-        }
-      },
-      {
-        offset: function () {
-          return -$(this.element).height() + 155;
-        },
-      }
-    );
-  };
-
-  $(function () {
-    fullHeight();
-    counterWayPoint();
-    contentWayPoint();
-    burgerMenu();
-    clickMenu();
-    navigationSection();
-    mobileMenuOutsideClick();
-    detectDayNightMode();
-  });
 })();
-
-var Accordion = function (el, multiple) {
-  this.el = el || {};
-  this.multiple = multiple || false;
-  var links = this.el.find(".link");
-  links.on("click", { el: this.el, multiple: this.multiple }, this.dropdown);
-};
-
-Accordion.prototype.dropdown = function (e) {
-  var $el = e.data.el;
-  var $this = $(this), $next = $this.next();
-
-  $next.slideToggle();
-  $this.parent().toggleClass("open");
-
-  if (!e.data.multiple) {
-    $el.find(".submenu").not($next).slideUp().parent().removeClass("open");
-  }
-};
-
-var accordion = new Accordion($("#accordion"), false);
-
-function enableDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
-
-function detectDayNightMode() {
-  const hours = new Date().getHours();
-  if (hours <= 6 || hours >= 20) {
-    enableDarkMode();
-  }
-}
