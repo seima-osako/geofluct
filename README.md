@@ -1,4 +1,6 @@
-# Portfolio Website.
+# geofluct
 
-This repository is a fork of https://github.com/vinaysomawat/vinaysomawat.github.io and includes modifications. 
-The original repository is licensed under the MIT License.
+Personal portfolio website of Seima Osako — Geospatial Data Scientist.
+
+Built with Tailwind CSS, vanilla JS (ES Modules), and Font Awesome 6.
+Licensed under the MIT License.
