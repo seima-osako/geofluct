@@ -82,7 +82,7 @@ export const education = [
     title: "Wageningen University & Research",
     duration: "2024 - 2025",
     subtitle: "Enrolled in Master of Science: Geo-Information Science program",
-    details: ["Short Paper <a href='/geofluct/documents/AEO_ShortPaper_v2.pdf' target='_blank'>[PDF]</a>: This study compared the forest loss detection capabilities of BFAST Monitor, a trajectory-based approach, with the Global Forest Change (GFC) dataset in tropical forests of Laos. Using MODIS EVI time-series data, BFAST Monitor achieved comparable accuracy to GFC, although potential overestimation was observed in areas of partial forest conversion"],
+    details: ["Short Paper <a href='./documents/AEO_ShortPaper_v2.pdf' target='_blank'>[PDF]</a>: This study compared the forest loss detection capabilities of BFAST Monitor, a trajectory-based approach, with the Global Forest Change (GFC) dataset in tropical forests of Laos. Using MODIS EVI time-series data, BFAST Monitor achieved comparable accuracy to GFC, although potential overestimation was observed in areas of partial forest conversion"],
     tags: [
       "Remote Sensing",
       "ArcGIS",
