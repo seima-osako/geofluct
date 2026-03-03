@@ -12,6 +12,14 @@ export const skills = [
 
 export const experience = [
   {
+    title: "<a href='https://synspective.com' target='_blank'>Synspective Inc.</a>",
+    duration: "March 2026 - Present",
+    subtitle: "Applied Scientist (Full-time)",
+    details: [],
+    tags: [],
+    icon: "flask",
+  },
+  {
     title: "<a href='https://www.creattura.com/en' target='_blank'>Creattura Co., Ltd.</a>",
     duration: "April 2024 - December 2025",
     subtitle: "Data Scientist (Contractor)",
